@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Steam API</title>
+</head>
+<style>
+    .profile-container {
+        display: grid;
+        grid-template-columns: auto auto;
+        max-width: 400px;
+        padding: 1em;
+        border: 1px solid black;
+        border-radius: 10px;
+        margin: 1em;
+    }
+    p {
+        margin: 5px;
+    }
+    .p-name {
+        color: darkblue;
+        font-size: 1.5em;
+    }
+    .profile-pic {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+</style>
+<body>
+<a href="http://localhost:3000/">Home</a>
+    <div class="profile-container">
+        <div class="profile-info">
+            <p class="p-name"><%= data.persona_name %></p>
+            <p>Level: <%= data.level %></p>
+            <% if (data.favorite_badge) { %>
+                <div class="badge-info">
+                    <p><%= data.favorite_badge.description %></p>
+                    <p>Badges:</p>
+                    <img src="<%= data.favorite_badge.icon %>" alt="Badge icon">
+                </div>
+            <% } %>
+        </div>
+        <img class="profile-pic" src="<%= data.avatar_url %>" alt="User Profile Image">
+    </div>
+</body>
+</html>

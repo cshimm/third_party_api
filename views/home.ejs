@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Steam API</title>
+</head>
+<style>
+    .game-item {
+        list-style: none;
+        border: 1px solid #ddd;
+        overflow: hidden;
+        transition: scale 100ms ease-in-out;
+        border-radius: 10px;
+    }
+
+    .game-item img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    .game-item:hover {
+        scale: 1.1;
+    }
+
+    .games-list {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        width: 75%;
+        max-width: 750px;
+        margin: auto;
+        padding: 0;
+    }
+
+    p {
+        margin: 0;
+    }
+    .featured-text {
+        width: fit-content;
+        margin: 1em auto;
+    }
+    .featured-container {
+        margin: 0;
+        display: inline-block;
+        width: 100%;
+    }
+</style>
+<body>
+    <h1>Steam API</h1>
+    <a href="http://localhost:3000/profile/35423595">My Steam profile</a>
+    <p>If you know your SteamID you can view your page by entering it below</p>
+    <form id="myForm">
+        <label for="inputValue">SteamID:</label>
+        <input type="text" id="inputValue" name="inputValue">
+        <button type="button" onclick="processForm()">Submit</button>
+    </form>
+    <% const currentDate = new Date(); %>
+    <% const options = {year: 'numeric', month: '2-digit', day: '2-digit'}; %>
+    <div class="featured-container">
+        <h2 class="featured-text">Featured Games for <%= currentDate.toLocaleDateString(undefined, options) %> </h2>
+        <ul class="games-list">
+            <% data.featured_win.forEach(game => { %>
+                <li class="game-item">
+                    <a href="https://store.steampowered.com/app/<%= game.id %>">
+                        <img src="<%= game.large_capsule_image %>" alt='game icon'>
+                    </a>
+                </li>
+            <% }); %>
+        </ul>
+    </div>
+</body>
+<script>
+    const processForm = () => {
+        const inputVal = document.getElementById('inputValue').value;
+        window.location.href = `http://localhost:3000/profile/${inputVal}`;
+    }
+</script>
+</html>

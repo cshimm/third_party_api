@@ -1,0 +1,6 @@
+Installation:
+1. run 'npm install' in your terminal
+
+Usage:
+1. run 'npm run start' in your terminal
+2. Open browser and navigate to http://localhost:3000/
